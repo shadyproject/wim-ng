@@ -2,7 +2,7 @@
     This change log was meant to be viewed in game.
     You may do so by typing: /wim changelog
 ]]
-local currentRevision = tonumber(("$Revision: 513 $"):match("(%d+)"));
+local currentRevision = tonumber(("$Revision: 514 $"):match("(%d+)"));
 local log = {};
 local beta_log = {};
 local t_insert = table.insert;
@@ -19,6 +19,7 @@ end
 --addEntry("3.7.10", "08/15/2016", [[
 --	*Fixed missing text on new whisper. Caveat: All whispers will now force scroll to bottom.
 --]]);
+addEntry("3.8.0", "11/12/2016" [[*Legion frame and hyperlink fixes]]);
 addEntry("3.7.9", "07/29/2016", [[
 	*Fixed a few green texture issues.
 ]]);

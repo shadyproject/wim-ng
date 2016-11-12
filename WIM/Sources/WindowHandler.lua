@@ -850,6 +850,7 @@ local function instantiateWindow(obj)
     widgets.scroll_down.widgetName = "scroll_down";
     
     widgets.chat_display = CreateFrame("ScrollingMessageFrame", fName.."ScrollingMessageFrame", obj);
+    widgets.chat_display:SetHyperlinksEnabled(true);
     -- widgets.chat_display:RegisterForDrag("LeftButton");
     widgets.chat_display:SetFading(false);
     widgets.chat_display:SetMaxLines(128);
