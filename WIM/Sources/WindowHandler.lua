@@ -1847,12 +1847,14 @@ RegisterWidgetTrigger("chat_display", "whisper,chat,w2w,demo", "OnMouseUp", func
 RegisterWidgetTrigger("chat_display", "whisper,chat,w2w", "OnHyperlinkClick", function(self, link, text, button) _G.SetItemRef(link, text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""), button, self); end);
 --RegisterWidgetTrigger("chat_display", "whisper,chat,w2w","OnMessageScrollChanged", function(self) updateScrollBars(self:GetParent()); end);
 
+local lastTTLink
 RegisterWidgetTrigger("chat_display", "whisper,chat,w2w", "OnHyperlinkEnter", function(self, link)
 			local obj = self.parentWindow;
 			obj.isOnHyperLink = true;
                         if(db.hoverLinks) then
                                 local t = string.match(link, "^(.-):")
                                 if(t == "item" or t == "enchant" or t == "spell" or t == "quest") then
+                                  lastTTLink = t
                                 	_G.ShowUIPanel(_G.GameTooltip);
                                 	_G.GameTooltip:SetOwner(_G.UIParent, "ANCHOR_CURSOR");
                                 	_G.GameTooltip:SetHyperlink(link);
@@ -1860,14 +1862,14 @@ RegisterWidgetTrigger("chat_display", "whisper,chat,w2w", "OnHyperlinkEnter", fu
                                 end
                         end
 		end)
-		
 RegisterWidgetTrigger("chat_display", "whisper,chat,w2w", "OnHyperlinkLeave", function(self, link)
 			local obj = self.parentWindow;
 			obj.isOnHyperLink = false;
                         if(db.hoverLinks) then
-                                local t = string.match(link, "^(.-):")
+                                local t = lastTTLink
                                 if(t == "item" or t == "enchant" or t == "spell" or t == "quest") then
-                                        _G.HideUIPanel(_G.GameTooltip);
+                                  _G.HideUIPanel(_G.GameTooltip);
+                                  lastTTLink = nil;
                                 end
                         end
 		end)
